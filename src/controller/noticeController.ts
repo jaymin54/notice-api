@@ -25,36 +25,6 @@ export const createNotice = async (req: Request, res: Response) => {
     return res.status(500).json({ status: commonStatus.failed, message:commonMessages.INTERNAL_SERVER_ERROR_MESSAGE });
   }
 };
-// export const createNotice = async (req: Request, res: Response) => {
-//   try {
-//     const { title, event, imageUrl, description, link } = req.body;
-
-//     // Check if required fields are provided
-//     if (!title || !description) {
-//       return res.status(400).json({ status: 'failed', message: 'Title and description are required fields.' });
-//     }
-
-//     // Assuming 'db.notice.create' returns a promise
-//     const newNotice = await db.notice.create({
-//       data: {
-//         title,
-//         event,
-//         imageUrl,
-//         description,
-//         link,
-//       },
-//     });
-
-//     return res.json({ status: 'success', data: newNotice, message: 'Notice created successfully.' });
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ status: 'failed', message: 'Internal server error.' });
-//   }
-// };
-
-
-
-// Get notices
 
 
 
@@ -234,87 +204,7 @@ export const deleteNotice = async (req: Request, res: Response) => {
 
 
 
-// export const searchNotice = async (req: Request, res: Response) => {
-//   let page = Number(req.query.page) || 1;
-//   let limit = Number(req.query.limit) || 10;
 
-//   if (page <= 0) {
-//     page = 1;
-//   }
-
-//   if (limit <= 0 || limit > 100) {
-//     limit = 10;
-//   }
-
-//   const skip = (page - 1) * limit;
-
-//   try {
-//     // Fetch notices with pagination
-//     const notices = await db.notice.findMany({
-//       skip: skip,
-//       take: limit,
-//     });
-
-//     // Get the total count of notices
-//     const totalNotices = await db.notice.count();
-
-//     // Calculate total pages
-//     const totalPages = Math.ceil( totalNotices / limit);
-
-//     // If the requested page exceeds the total pages, set it to the last page
-//     if (page > totalPages) {
-//       page = totalPages;
-//     }
-
-//     // If there is no content on the requested page, return the previous page of data
-//     if (notices.length === 0 && totalPages > 1 && page > 1) {
-//       page--;
-//       const previousSkip = (page - 1) * limit;
-//       const previousNotices = await db.notice.findMany({
-//         skip: previousSkip,
-//         take: limit,
-//       });
-
-//       return res.json({
-//         status: commonStatus.success,
-//         message: commonMessages.FETCH_NOTICE,
-//         data: previousNotices,
-//         meta: {
-//           totalPages,
-//           currentPage: page,
-//           limit: limit,
-//         },
-//       });
-//     }
-  
-
-  
-//     const query = (req.query.q as string).toLowerCase(); // Convert search query to lowercase
-  
-//     try {
-//       const notices = await db.notice.findMany({
-//         where: {
-//           OR: [
-//             { description: { contains: query } },
-//             { event: { contains: query } },
-//             { title: { contains: query } },
-//             { imageUrl: { contains: query } },
-//             { link: { contains: query } },
-//           ],
-//         },
-//       });
-  
-//       if (notices.length === 0) {
-//         return res.status(404).json({ status: commonStatus.not_found, message: commonMessages.NO_RESULTS_FOUND });
-//       }
-  
-//       return res.json({ status: commonStatus.success, data: notices });
-//     } catch (error) {
-//       console.error(error);
-//       return res.status(500).json({ status: commonStatus.failed, message: commonMessages.INTERNAL_SERVER_ERROR_MESSAGE });
-//     }
-//   }
-// }
 export const searchNotice = async (req: Request, res: Response) => {
   try {
     let page = Number(req.query.page) || 1;
