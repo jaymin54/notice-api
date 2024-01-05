@@ -14,10 +14,16 @@ It allows you to perform CRUD operations (Create, Read, Update, Delete) on notic
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`PORT` = 3000
 
 `DATABASE_URL` = "postgresql://nameofPostgrsql:password@localhost:5432/nameofDB?schema=public"
 
+## Live URL
+
+https://notice-api-z210.onrender.com
+
+## Example
+
+https://notice-api-z210.onrender.com/api/notice
 
 ## Installation
 
@@ -51,6 +57,12 @@ Start the project
 | :-------- | :------- | :------------------------- |
 | `api_key` | `string` | **Required**. Your API key |
 
+#### For query for Pagination
+
+```http
+ api/notice/?page=Number&limit=Number
+```
+
 #### Get notice by id
 
 ```http
@@ -70,6 +82,12 @@ Start the project
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `name`      | `string` | **Required**. name of what you what to search |
+
+#### For query for Pagination
+
+```http
+ api/notice/?page=Number&limit=Number
+```
 
 #### POST notice
 
@@ -113,3 +131,20 @@ Start the project
 
 
 
+
+## JSON file DEMO
+
+    {
+      "title": "Important Update",
+      "event": "General Announcement",
+      "imageUrl": "https://example.com/images/community-meeting.jpg",
+      "description": "We have important updates to     share. Read more for details.",
+      "link": "https://example.com/updates/12345"
+    },
+    {
+      "title": "Notice8",
+      "event": "Event 6",
+      "imageUrl": "https://example.com/image1.jpg",
+      "description": "Description for Notice 1",
+      "link": "https://example.com/notice1"
+    }
