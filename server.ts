@@ -1,11 +1,14 @@
 import "dotenv/config";
 import express, { Application, Request, Response } from "express";
 import router from "./src/routes"
+import cors from 'cors';
+
 
 const app: Application = express();
 const PORT: number = parseInt(process.env.PORT || "3000", 10);
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
